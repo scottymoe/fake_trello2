@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   # before_action :set_board, :only [:show, :edit]
 
   def index
-    @boards = Board.all
+    @boards = current_user.boards
   end
 
   def show
@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.new(board_params)
+    @board = current_user.boards.new(board_params)
 
     if @board.save
       redirect_to boards_path
